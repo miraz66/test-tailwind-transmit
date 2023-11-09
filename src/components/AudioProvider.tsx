@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext } from 'react'
+import React, { createContext, useMemo, useReducer, useRef } from 'react'
 import { type Episode } from '@/lib/episodes'
 
 interface PlayerState {
@@ -61,5 +61,15 @@ function audioReducer(state: PlayerState, action: Action): PlayerState {
 }
 
 export default function AudioProvider() {
+  let [state, dispatch] = useReducer(audioReducer, {
+    playing: false,
+    muted: false,
+    duration: 0,
+    currentTime: 0,
+    episode: null,
+  })
+  let playerRef = useRef<React.ElementRef<'audio'>>(null)
+  let actions = useMemo
+
   return <div>AudioProvider</div>
 }
